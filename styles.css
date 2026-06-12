@@ -217,6 +217,13 @@ body::before {
   text-align: center;
 }
 
+.hero-location {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  letter-spacing: 0.02em;
+}
+
 .avatar-wrap {
   width: 114px;
   height: 114px;
