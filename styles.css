@@ -467,6 +467,10 @@ h2 {
   background: rgba(66, 50, 34, 0.24);
 }
 
+.business-group h3 {
+  font-weight: 700;
+}
+
 .service-card h3 {
   margin: 0 0 0.24rem;
   font-family: 'Cormorant Garamond', 'Times New Roman', serif;
