@@ -19,6 +19,9 @@ const contactFeedback = document.getElementById('contact-feedback');
 const contactNameInput = document.getElementById('contact-name');
 const contactNumberInput = document.getElementById('contact-number');
 const contactMessageInput = document.getElementById('contact-message');
+const discordOpenBtn = document.getElementById('discord-open-modal');
+const discordCloseBtn = document.getElementById('discord-close-modal');
+const discordModal = document.getElementById('discord-modal');
 
 let pendingSubject = 'Waiting List';
 
@@ -72,6 +75,21 @@ function closeContactModal() {
   contactModal.setAttribute('aria-hidden', 'true');
 }
 
+function openDiscordModal() {
+  if (!discordModal) return;
+
+  discordModal.hidden = false;
+  discordModal.setAttribute('aria-hidden', 'false');
+  discordCloseBtn?.focus();
+}
+
+function closeDiscordModal() {
+  if (!discordModal) return;
+
+  discordModal.hidden = true;
+  discordModal.setAttribute('aria-hidden', 'true');
+}
+
 function openFromButton(event) {
   const button = event.currentTarget;
   openNovemModal({
@@ -93,6 +111,8 @@ waitingListButtons.forEach((button) => {
 novemCloseBtn?.addEventListener('click', closeNovemModal);
 contactOpenBtn?.addEventListener('click', openContactModal);
 contactCloseBtn?.addEventListener('click', closeContactModal);
+discordOpenBtn?.addEventListener('click', openDiscordModal);
+discordCloseBtn?.addEventListener('click', closeDiscordModal);
 
 novemModal?.addEventListener('click', (event) => {
   if (event.target === novemModal) {
@@ -106,12 +126,21 @@ contactModal?.addEventListener('click', (event) => {
   }
 });
 
+discordModal?.addEventListener('click', (event) => {
+  if (event.target === discordModal) {
+    closeDiscordModal();
+  }
+});
+
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && novemModal && !novemModal.hidden) {
     closeNovemModal();
   }
   if (event.key === 'Escape' && contactModal && !contactModal.hidden) {
     closeContactModal();
+  }
+  if (event.key === 'Escape' && discordModal && !discordModal.hidden) {
+    closeDiscordModal();
   }
 });
 
