@@ -453,9 +453,11 @@ h2 {
 }
 
 .service-card .link-button {
-  min-width: 6.7rem;
+  min-width: 11.4rem;
   justify-content: center;
   padding: 0.68rem 0.78rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
 }
 
 @media (max-width: 520px) {
