@@ -453,9 +453,13 @@ h2 {
 }
 
 .service-card .link-button {
-  min-width: 11.4rem;
+  min-width: 6.7rem;
   justify-content: center;
   padding: 0.68rem 0.78rem;
+}
+
+.project-group .service-card .link-button {
+  min-width: 11.4rem;
   font-size: 0.8rem;
   white-space: nowrap;
 }
