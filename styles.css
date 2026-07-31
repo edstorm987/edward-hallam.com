@@ -666,6 +666,16 @@ h2 {
     padding: 0.72rem;
   }
 
+  .service-card {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .service-card .link-button {
+    justify-self: start;
+    width: fit-content;
+  }
+
   .social-footer-frame {
     grid-area: social;
     grid-template-columns: minmax(0, 1fr) 260px;
