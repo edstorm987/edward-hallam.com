@@ -22,8 +22,26 @@ const contactMessageInput = document.getElementById('contact-message');
 const discordOpenBtn = document.getElementById('discord-open-modal');
 const discordCloseBtn = document.getElementById('discord-close-modal');
 const discordModal = document.getElementById('discord-modal');
+const enquiryEndpoint = window.EDWARD_ENQUIRY_ENDPOINT || 'https://aqua-crm.com/api/public/brand-enquiry';
 
 let pendingSubject = 'Waiting List';
+
+async function submitEnquiry(payload) {
+  const response = await fetch(enquiryEndpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      brand: 'edward-hallam',
+      consent: true,
+      sourceUrl: window.location.href,
+      ...payload,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error('Could not send enquiry.');
+  }
+}
 
 function openNovemModal(opts = {}) {
   if (!novemModal) return;
@@ -144,7 +162,7 @@ window.addEventListener('keydown', (event) => {
   }
 });
 
-novemForm?.addEventListener('submit', (event) => {
+novemForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   if (!novemEmailInput || !novemFeedback) {
@@ -154,16 +172,25 @@ novemForm?.addEventListener('submit', (event) => {
   const email = novemEmailInput.value.trim();
   if (!email) return;
 
-  const body = `Email: ${email}`;
-  const subject = encodeURIComponent(pendingSubject);
-  const encodedBody = encodeURIComponent(body);
-  window.location.href = `mailto:edwardhallam07@gmail.com?subject=${subject}&body=${encodedBody}`;
-
-  novemFeedback.removeAttribute('hidden');
-  novemEmailInput.value = '';
+  try {
+    await submitEnquiry({
+      name: 'Edward Hallam site visitor',
+      email,
+      contactMethod: 'email',
+      services: [pendingSubject],
+      message: `Waiting list request: ${pendingSubject}`,
+      campaign: pendingSubject,
+    });
+    novemFeedback.textContent = 'Thanks — you’re on the list.';
+    novemFeedback.removeAttribute('hidden');
+    novemEmailInput.value = '';
+  } catch {
+    novemFeedback.textContent = 'Sorry — that did not send. Please email me directly.';
+    novemFeedback.removeAttribute('hidden');
+  }
 });
 
-contactForm?.addEventListener('submit', (event) => {
+contactForm?.addEventListener('submit', async (event) => {
   event.preventDefault();
 
   if (!contactNameInput || !contactNumberInput || !contactMessageInput || !contactFeedback) {
@@ -175,11 +202,20 @@ contactForm?.addEventListener('submit', (event) => {
   const message = contactMessageInput.value.trim();
   if (!name || !number || !message) return;
 
-  const body = `Name: ${name}\nNumber: ${number}\nMessage: ${message}`;
-  const subject = encodeURIComponent('Custom Link Website Enquiry');
-  const encodedBody = encodeURIComponent(body);
-  window.location.href = `mailto:edwardhallam07@gmail.com?subject=${subject}&body=${encodedBody}`;
-
-  contactFeedback.removeAttribute('hidden');
-  contactForm.reset();
+  try {
+    await submitEnquiry({
+      name,
+      phone: number,
+      contactMethod: 'call',
+      services: ['Personal site enquiry'],
+      message,
+      campaign: 'Edward Hallam contact form',
+    });
+    contactFeedback.textContent = 'Thanks — I’ve got your enquiry.';
+    contactFeedback.removeAttribute('hidden');
+    contactForm.reset();
+  } catch {
+    contactFeedback.textContent = 'Sorry — that did not send. Please email me directly.';
+    contactFeedback.removeAttribute('hidden');
+  }
 });
