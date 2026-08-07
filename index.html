@@ -152,9 +152,10 @@
           <button class="modal-close" type="button" id="novem-close-modal" aria-label="Close waiting list form">✕</button>
           <h2 id="novem-modal-title">Join the waiting list</h2>
           <p id="novem-modal-description">Leave your email and we’ll notify you when applications open again.</p>
-          <form id="novem-form" class="signup-form">
+          <form id="novem-form" class="signup-form" data-aqua-form="Waiting list">
             <label for="novem-email" class="visually-hidden">Email address</label>
             <input id="novem-email" type="email" name="email" placeholder="you@example.com" required />
+            <label class="form-consent"><input type="checkbox" name="consent" value="yes" required /><span>I agree that my details may be used to manage this waiting-list request and contact me about it.</span></label>
             <button type="submit" class="link-button">Join Mailing List</button>
           </form>
           <p id="novem-feedback" class="signup-note" hidden>Thanks — you’re on the list.</p>
@@ -166,13 +167,14 @@
           <button class="modal-close" type="button" id="contact-close-modal" aria-label="Close contact form">✕</button>
           <h2 id="contact-modal-title">Let’s talk</h2>
           <p id="contact-modal-description">Please tell me how I can help you and I will get back to you.</p>
-          <form id="contact-form" class="signup-form">
+          <form id="contact-form" class="signup-form" data-aqua-form="Personal site enquiry">
             <label for="contact-name" class="visually-hidden">Name</label>
             <input id="contact-name" type="text" name="name" placeholder="Your name" required />
             <label for="contact-number" class="visually-hidden">Phone number</label>
             <input id="contact-number" type="tel" name="number" placeholder="Your number" required />
             <label for="contact-message" class="visually-hidden">Message</label>
             <textarea id="contact-message" name="message" placeholder="How can I help you?" required></textarea>
+            <label class="form-consent"><input type="checkbox" name="consent" value="yes" required /><span>I agree that my details may be used to reply to this enquiry and stored securely in AquaCRM.</span></label>
             <button type="submit" class="link-button">Send enquiry</button>
           </form>
           <p id="contact-feedback" class="signup-note" hidden>Thanks — I’ve got your enquiry.</p>
@@ -188,6 +190,23 @@
         </div>
       </div>
     </main>
+
+    <button class="cookie-reopen" type="button" data-cookie-reopen>Cookie settings</button>
+    <aside class="cookie-banner" data-cookie-banner hidden aria-label="Cookie choices">
+      <div><strong>Your privacy choices.</strong><p>Necessary storage keeps the site working. Optional Aqua analytics only runs when you allow it and never records what you type into forms.</p><a href="#cookie-information" data-cookie-manage>Manage choices</a></div>
+      <div class="cookie-actions"><button type="button" data-cookie-reject>Necessary only</button><button class="cookie-primary" type="button" data-cookie-accept>Accept all</button></div>
+    </aside>
+    <div class="cookie-overlay" data-cookie-dialog hidden role="dialog" aria-modal="true" aria-labelledby="cookie-title">
+      <section class="cookie-panel" id="cookie-information">
+        <header><div><p>Privacy controls</p><h2 id="cookie-title">Choose what this site may use.</h2></div><button type="button" data-cookie-close aria-label="Close cookie settings">Close</button></header>
+        <label><span><strong>Necessary</strong><small>Security, consent and core site operation.</small></span><input type="checkbox" checked disabled /></label>
+        <label><span><strong>Preferences</strong><small>Remember optional choices that improve your experience.</small></span><input type="checkbox" data-cookie-preferences /></label>
+        <label><span><strong>Analytics</strong><small>Measure page use, performance and faults without collecting form values.</small></span><input type="checkbox" data-cookie-analytics /></label>
+        <label><span><strong>Marketing</strong><small>Measure opted-in campaign conversions and attribution.</small></span><input type="checkbox" data-cookie-marketing /></label>
+        <p class="cookie-note">You can change these choices at any time. Enquiry form consent is separate and is only used to respond to a form you submit.</p>
+        <footer><button type="button" data-cookie-save>Save choices</button><button class="cookie-primary" type="button" data-cookie-dialog-accept>Accept all</button></footer>
+      </section>
+    </div>
 
     <script src="app.js"></script>
   </body>

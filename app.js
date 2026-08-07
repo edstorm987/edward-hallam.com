@@ -26,13 +26,14 @@ const enquiryEndpoint = window.EDWARD_ENQUIRY_ENDPOINT || 'https://aqua-crm.com/
 
 let pendingSubject = 'Waiting List';
 
-async function submitEnquiry(payload) {
+async function submitEnquiry(payload, consent) {
+  if (!consent) throw new Error('Please agree so I can use your details to reply.');
   const response = await fetch(enquiryEndpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       brand: 'edward-hallam',
-      consent: true,
+      consent,
       sourceUrl: window.location.href,
       ...payload,
     }),
@@ -180,7 +181,7 @@ novemForm?.addEventListener('submit', async (event) => {
       services: [pendingSubject],
       message: `Waiting list request: ${pendingSubject}`,
       campaign: pendingSubject,
-    });
+    }, new FormData(novemForm).get('consent') === 'yes');
     novemFeedback.textContent = 'Thanks — you’re on the list.';
     novemFeedback.removeAttribute('hidden');
     novemEmailInput.value = '';
@@ -210,7 +211,7 @@ contactForm?.addEventListener('submit', async (event) => {
       services: ['Personal site enquiry'],
       message,
       campaign: 'Edward Hallam contact form',
-    });
+    }, new FormData(contactForm).get('consent') === 'yes');
     contactFeedback.textContent = 'Thanks — I’ve got your enquiry.';
     contactFeedback.removeAttribute('hidden');
     contactForm.reset();
@@ -219,3 +220,65 @@ contactForm?.addEventListener('submit', async (event) => {
     contactFeedback.removeAttribute('hidden');
   }
 });
+
+const consentStorageKey = 'aqua-cookie-preferences';
+const consentCookieKey = 'aqua_cookie_preferences';
+const consentVersion = 1;
+const cookieBanner = document.querySelector('[data-cookie-banner]');
+const cookieDialog = document.querySelector('[data-cookie-dialog]');
+
+function readCookieChoice() {
+  try {
+    const value = JSON.parse(localStorage.getItem(consentStorageKey) || 'null');
+    return value && value.version === consentVersion && value.necessary === true ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+function storeCookieChoice(values, source) {
+  const value = {
+    version: consentVersion,
+    necessary: true,
+    preferences: Boolean(values.preferences),
+    analytics: Boolean(values.analytics),
+    marketing: Boolean(values.marketing),
+    updatedAt: new Date().toISOString(),
+    source,
+  };
+  localStorage.setItem(consentStorageKey, JSON.stringify(value));
+  document.cookie = `${consentCookieKey}=${encodeURIComponent(JSON.stringify(value))}; Max-Age=31536000; Path=/; SameSite=Lax${location.protocol === 'https:' ? '; Secure' : ''}`;
+  window.dispatchEvent(new CustomEvent('aqua:consent-updated', { detail: value }));
+  cookieBanner.hidden = true;
+  cookieDialog.hidden = true;
+}
+
+function showCookieSettings() {
+  const value = readCookieChoice() || {};
+  document.querySelector('[data-cookie-preferences]').checked = Boolean(value.preferences);
+  document.querySelector('[data-cookie-analytics]').checked = Boolean(value.analytics);
+  document.querySelector('[data-cookie-marketing]').checked = Boolean(value.marketing);
+  cookieDialog.hidden = false;
+}
+
+document.querySelector('[data-cookie-reject]')?.addEventListener('click', () => storeCookieChoice({}, 'banner-reject'));
+document.querySelector('[data-cookie-accept]')?.addEventListener('click', () => storeCookieChoice({ preferences: true, analytics: true, marketing: true }, 'banner-accept'));
+document.querySelectorAll('[data-cookie-manage], [data-cookie-reopen]').forEach((button) => button.addEventListener('click', showCookieSettings));
+document.querySelector('[data-cookie-close]')?.addEventListener('click', () => { cookieDialog.hidden = true; });
+document.querySelector('[data-cookie-save]')?.addEventListener('click', () => storeCookieChoice({
+  preferences: document.querySelector('[data-cookie-preferences]').checked,
+  analytics: document.querySelector('[data-cookie-analytics]').checked,
+  marketing: document.querySelector('[data-cookie-marketing]').checked,
+}, 'settings-save'));
+document.querySelector('[data-cookie-dialog-accept]')?.addEventListener('click', () => storeCookieChoice({ preferences: true, analytics: true, marketing: true }, 'settings-accept'));
+cookieDialog?.addEventListener('click', (event) => { if (event.target === cookieDialog) cookieDialog.hidden = true; });
+cookieBanner.hidden = Boolean(readCookieChoice());
+
+const aquaTag = document.createElement('script');
+aquaTag.src = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? 'http://localhost:3032/aqua-tag.js'
+  : 'https://aqua-crm.com/aqua-tag.js';
+aquaTag.dataset.siteKey = 'aqua_public_edward_hallam_v1';
+aquaTag.dataset.property = 'edward-hallam';
+aquaTag.defer = true;
+document.head.appendChild(aquaTag);
