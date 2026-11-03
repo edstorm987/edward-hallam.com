@@ -1,0 +1,168 @@
+/* Link-tree <-> website mode transition: an aqua ring sweeps round the tap,
+   floods the screen, forms a shark that swims off; on the next page the shark
+   swims back across and wipes the page open behind it.
+   Driven by /mode-transition.js. Reduced motion skips it entirely. */
+
+/* Covers the next page from first paint until the arrival overlay is built. */
+html.eh-arriving::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  background: radial-gradient(circle at 50% 50%, #3fd4e2 0%, #1694ab 30%, #0a4a62 62%, #04121c 100%);
+}
+
+.eh-sea {
+  --x: 50%;
+  --y: 50%;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.eh-sea-fill {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--x) var(--y), #5ee7f0 0%, #1fb6c9 22%, #0b5f78 52%, #04121c 100%);
+  clip-path: circle(0 at var(--x) var(--y));
+}
+
+.eh-sea-fill::after {
+  /* light caustics so the water isn't flat */
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 30% 12% at 30% 30%, rgba(255, 255, 255, 0.16), transparent 70%),
+    radial-gradient(ellipse 22% 9% at 70% 60%, rgba(255, 255, 255, 0.12), transparent 70%),
+    radial-gradient(ellipse 26% 10% at 45% 80%, rgba(255, 255, 255, 0.1), transparent 70%);
+  animation: eh-caustics 1.6s ease-in-out infinite alternate;
+}
+
+.eh-ring {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 160px;
+  height: 160px;
+  overflow: visible;
+  opacity: 0;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+.eh-ring circle {
+  fill: none;
+  stroke: url(#eh-ring-gradient);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-dasharray: 290;
+  stroke-dashoffset: 290;
+}
+
+.eh-shark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(52vw, 440px);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  filter: drop-shadow(0 18px 30px rgba(0, 10, 20, 0.45));
+}
+
+.eh-shark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  transform-origin: 72% 50%;
+  animation: eh-tail 0.16s ease-in-out infinite alternate;
+}
+
+.eh-bubble {
+  position: absolute;
+  width: var(--s, 10px);
+  height: var(--s, 10px);
+  border: 2px solid rgba(255, 255, 255, 0.55);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+/* ---- Leaving the current page ---- */
+.eh-sea.is-leaving .eh-ring {
+  animation: eh-ring-show 0.5s cubic-bezier(0.5, 0, 0.2, 1) forwards, eh-ring-collapse 0.32s 0.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+}
+.eh-sea.is-leaving .eh-ring circle {
+  animation: eh-ring-draw 0.48s cubic-bezier(0.6, 0, 0.2, 1) forwards;
+}
+.eh-sea.is-leaving .eh-sea-fill {
+  animation: eh-flood 0.55s 0.42s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+.eh-sea.is-leaving .eh-shark {
+  /* born where the ring was, then swims away across the screen */
+  left: var(--x);
+  top: var(--y);
+  animation: eh-shark-form 0.42s 0.62s cubic-bezier(0.2, 0.9, 0.2, 1.15) forwards, eh-swim-out 0.5s 1.08s cubic-bezier(0.6, 0, 0.9, 0.45) forwards;
+}
+.eh-sea.is-leaving .eh-bubble {
+  animation: eh-bubble 0.9s var(--d, 0.7s) ease-out forwards;
+}
+
+/* ---- Arriving on the new page ---- */
+.eh-sea.is-arriving .eh-sea-fill {
+  clip-path: inset(0 0 0 0);
+  animation: eh-wipe 0.75s 0.18s cubic-bezier(0.7, 0, 0.2, 1) forwards;
+}
+.eh-sea.is-arriving .eh-shark {
+  opacity: 1;
+  animation: eh-swim-in 0.95s cubic-bezier(0.35, 0, 0.25, 1) forwards;
+}
+
+@keyframes eh-ring-show {
+  from { opacity: 0; transform: translate(-50%, -50%) rotate(-90deg) scale(0.4); }
+  to { opacity: 1; transform: translate(-50%, -50%) rotate(270deg) scale(1); }
+}
+@keyframes eh-ring-collapse {
+  /* the ring tightens into the shark forming at its centre */
+  from { opacity: 1; transform: translate(-50%, -50%) rotate(270deg) scale(1); }
+  to { opacity: 0; transform: translate(-50%, -50%) rotate(450deg) scale(0.15); }
+}
+@keyframes eh-ring-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes eh-flood {
+  to { clip-path: circle(150vmax at var(--x) var(--y)); }
+}
+@keyframes eh-shark-form {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0.2) rotate(-30deg); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+@keyframes eh-swim-out {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  to { opacity: 1; transform: translate(calc(-50% + 110vw), -70%) scale(1.15) rotate(-8deg); }
+}
+@keyframes eh-swim-in {
+  from { transform: translate(calc(-50% - 85vw), -46%) scale(1.1) rotate(4deg); }
+  to { transform: translate(calc(-50% + 90vw), -54%) scale(1.1) rotate(-4deg); }
+}
+@keyframes eh-wipe {
+  to { clip-path: inset(0 0 0 100%); }
+}
+@keyframes eh-tail {
+  from { transform: skewY(-2.5deg) scaleX(1); }
+  to { transform: skewY(2.5deg) scaleX(0.985); }
+}
+@keyframes eh-bubble {
+  0% { opacity: 0; transform: translateY(0) scale(0.6); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-38vh) scale(1.2); }
+}
+@keyframes eh-caustics {
+  from { transform: translate(-2%, -1%) scale(1); }
+  to { transform: translate(2%, 1%) scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.eh-arriving::after { display: none; }
+  .eh-sea { display: none; }
+}

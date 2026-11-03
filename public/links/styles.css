@@ -594,7 +594,7 @@ h2 {
     background:
       linear-gradient(180deg, rgba(6, 23, 45, 0.54), rgba(11, 22, 15, 0.9)),
       linear-gradient(145deg, rgba(51, 92, 143, 0.52), rgba(127, 168, 106, 0.22)),
-      url('assets/edward-hallam-profile.jpg') center / cover;
+      url('/assets/edward-hallam-profile.jpg') center / cover;
     opacity: 0.44;
     filter: blur(2px) saturate(0.85);
     transform: scale(1.04);
@@ -1241,3 +1241,32 @@ h2 {
 .cookie-note { color: var(--muted); font-size: .72rem; line-height: 1.5; }
 .cookie-panel footer { justify-content: flex-end; margin-top: 1rem; }
 @media (max-width: 620px) { .cookie-banner { grid-template-columns: 1fr; gap: .85rem; } .cookie-actions { display: grid; grid-template-columns: 1fr 1fr; } .cookie-actions button { width: 100%; } .cookie-panel { padding: 1rem; } }
+
+/* Switch into website mode (with the shared mode transition). */
+.eh-name { view-transition-name: eh-name; }
+.about-me-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  margin-top: 0.9rem;
+  padding: 0 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.about-me-button span { transition: transform 0.25s ease; }
+.about-me-button:hover,
+.about-me-button:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06), var(--shadow);
+  transform: translateY(-1px);
+}
+.about-me-button:hover span,
+.about-me-button:focus-visible span { transform: translateX(3px); }
