@@ -1,0 +1,532 @@
+{
+  "seo": {
+    "name": "Edward Hallam",
+    "firstName": "Edward",
+    "lastName": "Hallam",
+    "title": "Edward Hallam",
+    "description": "Edward Hallam is a 19-year-old founder from Suffolk, England, building AquaCRM, Zimante Group, AquaOasis-Web, Milesymedia, NOVEM and Lucid OS.",
+    "awayTitle": "Come back soon - Edward Hallam",
+    "linksTitle": "Edward Hallam | Links",
+    "linksDescription": "Quick links for Edward Hallam's companies, projects and socials."
+  },
+  "assets": {
+    "heroBackground": "/assets/ed/hero-sunset-pier.jpg",
+    "contactBackground": "/assets/ed/motorbike-sunset.jpg",
+    "profile": "/assets/ed/ed-suit.jpg"
+  },
+  "socialLinks": [
+    {
+      "name": "Instagram",
+      "href": "https://www.instagram.com/edsworld27/",
+      "icon": "instagram"
+    },
+    {
+      "name": "LinkedIn",
+      "href": "https://www.linkedin.com/in/edward-hallam07/",
+      "icon": "linkedin"
+    },
+    {
+      "name": "YouTube",
+      "href": "https://www.youtube.com/@edsworld27",
+      "icon": "youtube"
+    }
+  ],
+  "featuredEvents": [
+    {
+      "name": "AquaCRM",
+      "tagline": "The connected operating system for leads, clients, delivery, finance, support and portals.",
+      "image": "/assets/ed/building-laptop.jpg",
+      "ctaLabel": "Explore AquaCRM",
+      "ctaAction": "external",
+      "href": "https://www.aqua-crm.co.uk",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "Live with first clients",
+      "status": "Live with first clients",
+      "dates": []
+    },
+    {
+      "name": "Zimante Group",
+      "tagline": "The parent group coordinating work across media, websites, campaigns and software.",
+      "image": "/assets/ed/stage-lights.jpg",
+      "ctaLabel": "Meet the Group",
+      "ctaAction": "external",
+      "href": "https://zimante-group.com",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "The group",
+      "status": "The group",
+      "dates": []
+    },
+    {
+      "name": "AquaOasis-Web",
+      "tagline": "Websites, Google visibility, ecommerce, campaigns and bespoke software for businesses.",
+      "image": "/assets/ed/hero-sunset-pier.jpg",
+      "ctaLabel": "Enter the Digital Age",
+      "ctaAction": "external",
+      "href": "https://aquaoasis-web.com",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "Taking clients",
+      "status": "Taking clients",
+      "dates": []
+    },
+    {
+      "name": "Milesymedia",
+      "tagline": "Photography and video for businesses, events, people, property, automotive and weddings.",
+      "image": "/assets/ed/camera-rig.jpg",
+      "ctaLabel": "View Milesymedia",
+      "ctaAction": "external",
+      "href": "https://milesymedia.com",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "Taking bookings",
+      "status": "Taking bookings",
+      "dates": []
+    },
+    {
+      "name": "NOVEM",
+      "tagline": "A founders club for young entrepreneurs: events, support and a community that grows together.",
+      "image": "/assets/ed/gig-crowd.jpg",
+      "ctaLabel": "Join waiting list",
+      "ctaAction": "mailing",
+      "href": "",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "Waiting list open",
+      "status": "Waiting list open",
+      "dates": []
+    },
+    {
+      "name": "Lucid OS",
+      "tagline": "A personal development and life operations suite with agentic capacity.",
+      "image": "/assets/ed/silhouettes-window.jpg",
+      "ctaLabel": "Get notified",
+      "ctaAction": "mailing",
+      "href": "",
+      "newTab": true,
+      "venue": "",
+      "recorded": "",
+      "maxAttendees": "",
+      "spotsAvailable": "Coming very soon",
+      "status": "Coming very soon",
+      "dates": []
+    }
+  ],
+  "companies": [],
+  "about": {
+    "title": "About",
+    "body": "I'm Edward Hallam, a 19-year-old founder from Suffolk, England. I build companies, software and communities: AquaCRM, Zimante Group, AquaOasis-Web, Milesymedia, NOVEM and Lucid OS. [Ed to write: a few lines in your own words about who you are]",
+    "images": [
+      {
+        "src": "/assets/ed/ed-suit.jpg",
+        "alt": "Edward Hallam in a suit"
+      },
+      {
+        "src": "/assets/ed/mirror-selfie.jpg",
+        "alt": "Edward Hallam with friends"
+      }
+    ]
+  },
+  "earlyLife": {
+    "title": "My Story",
+    "eyebrow": "Why I started",
+    "body": "[Ed to write: your story: where you started, the moment you decided to build, and your mission]",
+    "images": [
+      {
+        "src": "/assets/ed/building-laptop.jpg",
+        "alt": "Working late on a laptop"
+      },
+      {
+        "src": "/assets/ed/camera-rig.jpg",
+        "alt": "A camera rig set up for filming"
+      }
+    ]
+  },
+  "giving": [
+    {
+      "prompt": "Currently reading…",
+      "title": "Psycho-Cybernetics, Maxwell Maltz",
+      "description": "[Ed to write: why it's hitting for you]",
+      "images": [
+        {
+          "src": "/assets/ed/psycho-cybernetics.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/building-laptop.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "Currently obsessed with…",
+      "title": "[Ed to write: one line]",
+      "description": "",
+      "images": [
+        {
+          "src": "/assets/ed/building-laptop.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/stage-lights.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "My perfect day looks like…",
+      "title": "[Ed to write: one line]",
+      "description": "",
+      "images": [
+        {
+          "src": "/assets/ed/hero-sunset-pier.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/motorbike-sunset.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "You'll win me over if…",
+      "title": "[Ed to write: one line]",
+      "description": "",
+      "images": [
+        {
+          "src": "/assets/ed/gig-crowd.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/mirror-selfie.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "Something most people don't know about me…",
+      "title": "[Ed to write: one line]",
+      "description": "",
+      "images": [
+        {
+          "src": "/assets/ed/travel-pigeon.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/swan-lake.jpg",
+          "alt": ""
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "title": "AquaCRM went live with its first client",
+      "description": "The operating system I built now runs a real client's business: sales, delivery, finance and their own portal.",
+      "images": [
+        {
+          "src": "/assets/ed/building-laptop.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/psycho-cybernetics.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "title": "[Ed to write: another achievement]",
+      "description": "[Ed to write: one line]",
+      "images": [
+        {
+          "src": "/assets/ed/hero-sunset-pier.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/camera-rig.jpg",
+          "alt": ""
+        }
+      ],
+      "reverse": true
+    }
+  ],
+  "fashion": null,
+  "mentors": [
+    {
+      "prompt": "Weekends are for…",
+      "title": "Motorbikes & motorsport",
+      "description": "[Ed to write: what you ride, track days, favourite racer]",
+      "images": [
+        {
+          "src": "/assets/ed/signed-helmet.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/track-day.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "You'll find me front row at…",
+      "title": "Live music & events",
+      "description": "[Ed to write: favourite gig or artist]",
+      "images": [
+        {
+          "src": "/assets/ed/gig-crowd.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/stage-lights.jpg",
+          "alt": ""
+        }
+      ]
+    },
+    {
+      "prompt": "Never leave home without…",
+      "title": "Film & photography",
+      "description": "[Ed to write: what you love shooting]",
+      "images": [
+        {
+          "src": "/assets/ed/shooting-swan.jpg",
+          "alt": "Edward photographing a cygnet on the marsh"
+        },
+        {
+          "src": "/assets/ed/swan-lake.jpg",
+          "alt": "A swan on a lake"
+        }
+      ]
+    },
+    {
+      "prompt": "Every morning starts with…",
+      "title": "Training",
+      "description": "[Ed to write: boxing, gym, headstands]",
+      "images": [
+        {
+          "src": "/assets/ed/training-headstand.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/mirror-selfie.jpg",
+          "alt": ""
+        }
+      ]
+    }
+  ],
+  "eventExperience": [
+    {
+      "title": "Want a site like this?",
+      "description": "I build these custom. If you'd like your own without paying a subscription, let's get in touch.",
+      "images": [
+        {
+          "src": "/assets/ed/camera-rig.jpg",
+          "alt": ""
+        },
+        {
+          "src": "/assets/ed/building-laptop.jpg",
+          "alt": ""
+        }
+      ],
+      "href": "#contact",
+      "linkLabel": "Get in touch"
+    }
+  ],
+  "formQuestions": [
+    {
+      "field": "name",
+      "title": "What is your name?",
+      "placeholder": "Type your answer here...",
+      "type": "text"
+    },
+    {
+      "field": "email",
+      "title": "What is your email?",
+      "placeholder": "name@example.com",
+      "type": "email"
+    },
+    {
+      "field": "message",
+      "title": "How can I help?",
+      "placeholder": "Type your answer here...",
+      "type": "textarea"
+    },
+    {
+      "field": "consent",
+      "title": "Can I use these details to reply and store them securely in AquaCRM?",
+      "placeholder": "",
+      "type": "consent",
+      "label": "Yes, I agree (see the privacy policy at /privacy)"
+    }
+  ],
+  "forms": {
+    "contact": {
+      "startTitle": "Want to send me a message?",
+      "startBody": "Tell me how I can help and I'll get back to you.",
+      "startButton": "Start",
+      "nextButton": "OK",
+      "submitButton": "Submit",
+      "enterHint": "press Enter ↵",
+      "requiredError": "Please answer this question before continuing.",
+      "emailError": "Please enter a valid email address.",
+      "thankYouEyebrow": "Thank you",
+      "thankYouTitle": "Thanks, I'll get back to you as soon as I can.",
+      "sendAnotherButton": "Send another message",
+      "source": "Edward Hallam website contact form",
+      "failure": "Sorry, that didn't send. Please email edwardhallam07@gmail.com."
+    }
+  },
+  "popups": {
+    "gift": {
+      "eyebrow": "A gift for you",
+      "title": "Receive the gift",
+      "body": "Leave your email and I will send you something useful for business, growth, and upcoming opportunities.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "button": "Claim gift",
+      "success": "Thank you. We will be in touch soon :)",
+      "source": "Gift popup",
+      "enabled": false
+    },
+    "upcomingEvents": {
+      "eyebrow": "Get notified",
+      "title": "Join the list",
+      "body": "Leave your email and I'll let you know when this opens.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "button": "Join list",
+      "success": "Thanks, you're on the list.",
+      "source": "Edward Hallam website waiting list",
+      "consentLabel": "I agree my email may be used to manage this request and contact me about it."
+    },
+    "linktreeGift": {
+      "eyebrow": "A gift for you",
+      "title": "Receive the gift",
+      "body": "Leave your email and I will send you something useful for business, growth, and upcoming opportunities.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "name@example.com",
+      "button": "Claim gift",
+      "success": "Thank you. We will be in touch soon :)",
+      "source": "Linktree gift popup"
+    }
+  },
+  "contactDetails": {
+    "email": "mailto:edwardhallam07@gmail.com",
+    "emailLabel": "Email Edward",
+    "phone": "",
+    "phoneLabel": ""
+  },
+  "notFound": {
+    "eyebrow": "404",
+    "title": "Sorry, something went wrong",
+    "body": "The page you are looking for is missing or has moved. You can return home or send me a quick message.",
+    "homeLabel": "Return home",
+    "contactLabel": "Contact form",
+    "callLabel": "",
+    "emailLabel": "Email Edward"
+  },
+  "robots": {
+    "allowIndexing": true,
+    "disallow": [],
+    "sitemapPath": "/sitemap.xml"
+  },
+  "siteMap": {
+    "baseUrl": "https://edward-hallam.com",
+    "pages": [
+      {
+        "label": "Home",
+        "path": "/",
+        "changeFrequency": "monthly",
+        "priority": "1.0",
+        "enabled": true
+      },
+      {
+        "label": "Links",
+        "path": "/links",
+        "changeFrequency": "monthly",
+        "priority": "0.7",
+        "enabled": true
+      },
+      {
+        "label": "Privacy",
+        "path": "/privacy",
+        "changeFrequency": "yearly",
+        "priority": "0.2",
+        "enabled": true
+      }
+    ]
+  },
+  "tracking": {
+    "cookieBanner": {
+      "enabled": false,
+      "title": "Cookies",
+      "body": "We use cookies and tags to understand site performance and improve the experience.",
+      "acceptLabel": "Accept",
+      "rejectLabel": "Reject"
+    },
+    "googleTag": {
+      "enabled": false,
+      "measurementId": "",
+      "pages": [
+        "/",
+        "/links"
+      ],
+      "respectConsent": true
+    },
+    "pixels": [
+      {
+        "name": "Meta Pixel",
+        "provider": "meta",
+        "enabled": false,
+        "pixelId": "",
+        "pages": [
+          "/",
+          "/links"
+        ],
+        "respectConsent": true
+      }
+    ]
+  },
+  "sections": {
+    "carousel": "My Companies",
+    "carouselLabel": "Edward Hallam",
+    "companies": "The Group",
+    "giving": "The Vibe",
+    "education": "Achievements",
+    "mentors": "What I Love",
+    "eventExperience": "Work With Me",
+    "contact": "Get in Touch",
+    "nav": [
+      [
+        "#about",
+        "About"
+      ],
+      [
+        "#the-vibe",
+        "The Vibe"
+      ],
+      [
+        "#what-i-love",
+        "What I Love"
+      ],
+      [
+        "#contact",
+        "Contact"
+      ]
+    ]
+  },
+  "profile": {
+    "videos": [],
+    "channelUrl": "https://www.youtube.com/@edsworld27"
+  }
+}

@@ -22,20 +22,45 @@ const contactMessageInput = document.getElementById('contact-message');
 const discordOpenBtn = document.getElementById('discord-open-modal');
 const discordCloseBtn = document.getElementById('discord-close-modal');
 const discordModal = document.getElementById('discord-modal');
-const enquiryEndpoint = window.EDWARD_ENQUIRY_ENDPOINT || 'https://aqua-crm.com/api/public/brand-enquiry';
+const enquiryEndpoint = window.EDWARD_ENQUIRY_ENDPOINT || 'https://www.aqua-crm.co.uk/api/public/brand-enquiry';
+
+const aquaBotChallenge = document.createElement('script');
+aquaBotChallenge.src = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
+  ? 'http://localhost:3032/aqua-bot-challenge.js'
+  : 'https://www.aqua-crm.co.uk/aqua-bot-challenge.js';
+aquaBotChallenge.async = true;
+document.head.appendChild(aquaBotChallenge);
+
+// This local capture guard closes the short gap before the shared challenge
+// script has loaded. The shared script provides the visible status and widget.
+document.addEventListener('submit', (event) => {
+  const form = event.target;
+  if (!(form instanceof HTMLFormElement) || !form.matches('[data-aqua-challenge-action]')) return;
+  if (window.AquaBotChallenge?.ready(form)) return;
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  const feedback = form === novemForm ? novemFeedback : contactFeedback;
+  if (feedback) {
+    feedback.textContent = 'Please complete verification before sending.';
+    feedback.removeAttribute('hidden');
+  }
+}, true);
 
 let pendingSubject = 'Waiting List';
 
-async function submitEnquiry(payload, consent) {
+async function submitEnquiry(payload, consent, captchaToken) {
   if (!consent) throw new Error('Please agree so I can use your details to reply.');
   const response = await fetch(enquiryEndpoint, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
+      ...payload,
       brand: 'edward-hallam',
       consent,
       sourceUrl: window.location.href,
-      ...payload,
+      // The live endpoint refuses a production enquiry without a durable reference.
+      submissionId: `aqua_sub_${(crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2)).replace(/-/g, '')}`,
+      captchaToken,
     }),
   });
 
@@ -181,13 +206,15 @@ novemForm?.addEventListener('submit', async (event) => {
       services: [pendingSubject],
       message: `Waiting list request: ${pendingSubject}`,
       campaign: pendingSubject,
-    }, new FormData(novemForm).get('consent') === 'yes');
+    }, new FormData(novemForm).get('consent') === 'yes', new FormData(novemForm).get('captchaToken'));
     novemFeedback.textContent = 'Thanks — you’re on the list.';
     novemFeedback.removeAttribute('hidden');
     novemEmailInput.value = '';
   } catch {
     novemFeedback.textContent = 'Sorry — that did not send. Please email me directly.';
     novemFeedback.removeAttribute('hidden');
+  } finally {
+    window.AquaBotChallenge?.reset(novemForm);
   }
 });
 
@@ -211,13 +238,15 @@ contactForm?.addEventListener('submit', async (event) => {
       services: ['Personal site enquiry'],
       message,
       campaign: 'Edward Hallam contact form',
-    }, new FormData(contactForm).get('consent') === 'yes');
+    }, new FormData(contactForm).get('consent') === 'yes', new FormData(contactForm).get('captchaToken'));
     contactFeedback.textContent = 'Thanks — I’ve got your enquiry.';
     contactFeedback.removeAttribute('hidden');
     contactForm.reset();
   } catch {
     contactFeedback.textContent = 'Sorry — that did not send. Please email me directly.';
     contactFeedback.removeAttribute('hidden');
+  } finally {
+    window.AquaBotChallenge?.reset(contactForm);
   }
 });
 
@@ -277,7 +306,7 @@ cookieBanner.hidden = Boolean(readCookieChoice());
 const aquaTag = document.createElement('script');
 aquaTag.src = location.hostname === 'localhost' || location.hostname === '127.0.0.1'
   ? 'http://localhost:3032/aqua-tag.js'
-  : 'https://aqua-crm.com/aqua-tag.js';
+  : 'https://www.aqua-crm.co.uk/aqua-tag.js';
 aquaTag.dataset.siteKey = 'aqua_public_edward_hallam_v1';
 aquaTag.dataset.property = 'edward-hallam';
 aquaTag.defer = true;
